@@ -1,11 +1,13 @@
 // Interval for target generation loop
-var intervalApparitionTarget = 1000; // 3000
+// var intervalApparitionTarget = 1000; // 3000
 
 // Collision calcution interval
 var calculationInterval = 100;
 
+var level = 1;
+
 // Fall duration
-var timeTravel = 5000; // 5000
+// var timeTravel = 5000; // 5000
 
 
 // Screen size
@@ -86,10 +88,12 @@ endlessBackgound(element);
 
 
 /* --------------------------------- GAME--------------------------------------*/
-function game(intervalApparitionTarget){
+function game(level, timeTravel){
         $("#current-score").html(0);
 
-        var intervalApparitionTarget = intervalApparitionTarget;
+        var level = level;
+        var intervalApparitionTarget = level * 1000; // niveau x 1 seconde
+        var timeTravel = timeTravel;
 
         // Events set up
         function events(){
@@ -244,6 +248,7 @@ function game(intervalApparitionTarget){
 
                 var TargetFall = function() {
 
+
                     target(i);
                     i++;
 
@@ -282,14 +287,15 @@ function game(intervalApparitionTarget){
 
                 };
 
-                var TargetFallTimer = function() {
+                var TargetFallTimer = function(intervalApparitionTarget) {
+                  var intervalApparitionTarget = intervalApparitionTarget;
                     fallIntervalID = setInterval(TargetFall, intervalApparitionTarget);
                 };
-                TargetFallTimer();
+                TargetFallTimer(intervalApparitionTarget);
 
 
 
-                function TargetInit(){
+                // function TargetInit(){
 
                     var id = "";
                     var TargetObject =  "";
@@ -310,7 +316,7 @@ function game(intervalApparitionTarget){
                     }
 
                     // Target genetation
-                    var abricotInterval = setInterval(function() {
+                    var targetInterval = setInterval(function() {
 
                         // Targets index
                         myTargets = [];
@@ -384,9 +390,9 @@ function game(intervalApparitionTarget){
                         }
 
                     }, calculationInterval);
-                }TargetInit();
+                //} TargetInit();
+         } TargetSetUp(timeTravel, calculationInterval);
 
-        } TargetSetUp(timeTravel, calculationInterval);
 
         // Shots set up
         function shotInit(){
@@ -479,17 +485,17 @@ function game(intervalApparitionTarget){
 
                                         // Sounds for peaches
                                         if(myTargets[a].id.indexOf("peach") != -1){
-                                            soundEffectIndex = [new Audio('son/aaah.mp3'),new Audio('son/bonjour-madame.mp3'),new Audio('son/han.mp3'),new Audio('son/oaah.mp3'),new Audio('son/ohohohoh.mp3'),new Audio('son/pop.mp3')];
+                                            soundEffectIndex = [new Audio('compiled/son/aaah.mp3'),new Audio('compiled/son/bonjour-madame.mp3'),new Audio('compiled/son/han.mp3'),new Audio('compiled/son/oaah.mp3'),new Audio('compiled/son/ohohohoh.mp3'),new Audio('compiled/son/pop.mp3')];
                                             currentScore += 200;
                                         }
                                         // Sounds for oignons
                                         else if (myTargets[a].id.indexOf("oignon") != -1){
-                                            soundEffectIndex = [new Audio('son/pioui.mp3')];
+                                            soundEffectIndex = [new Audio('compiled/son/pioui.mp3')];
                                             currentScore += 100;
                                         }
                                         // Sounds for aubergines
                                         else if (myTargets[a].id.indexOf("aubergine") != -1){
-                                            soundEffectIndex = [new Audio('son/bah.mp3')];
+                                            soundEffectIndex = [new Audio('compiled/son/bah.mp3')];
                                             currentScore -= 500;
                                         }
 
@@ -559,6 +565,7 @@ function lives(){
             $(".overlay").html("");
             $(".overlay").append("<div class='retry'><p>Best score : "+bestScore+"</p><br><br><p class='spacebar'>Press spacebar to retry</p></div>'");
             $("#lifebox").append("<p>💗</p><p>💗</p><p>💗</p><p>💗</p><p>💗</p><p>💗</p>");
+            level = level + 3 ;
         }
     }, calculationInterval);
 }lives();
@@ -573,10 +580,9 @@ if (bestScore > 0){
 
 
 
-
 $(document).keydown(function(e){
     if (e.which == 32){
-        game(3500);
+        game(level,5000);
         $("div.first-start").remove();
         $(".overlay").hide();
     }
@@ -587,7 +593,7 @@ $(document).keydown(function(e){
 
 //   MUSIC
 /*
-    var kassos = new Audio("son/darktek-kassos.mp3");
+    var kassos = new Audio("compiled/son/darktek-kassos.mp3");
     kassos.play();
 
     kassos.addEventListener('ended', function() {

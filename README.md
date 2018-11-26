@@ -1,13 +1,34 @@
-# Grunt starter with ssas  #
+# Tizizi
 
-Starter for Grunt
+get bored, have fun
 
 -------
 
-## What's in it ?
+## Fonctions
+
+* game(intervalApparitionTarget, timeTravel,level)
+- events()
+- TargetSetUp(timeTravel, calculationInterval)
+  - target(id)
+  - TargetFall(timeTravel)
 
 
-### Set up server - Livereload
+
+shotsIntervalTimer
+  takes shotIntervalID as a parameter to clear shotsInterval
+
+TargetFallTimer
+  takes fallIntervalID as a parameter to clear TargetFall
+
+targetInterval
+// TargetInit()
+
+
+
+-- shotInit()
+-- collision()
+
+### variables
 * grunt-contrib-connect      
 
 
@@ -19,8 +40,6 @@ Starter for Grunt
 // Browsers compatibility
 
 ###  JS
-* grunt-contrib-jshint
-// For debugging Js
 
 * grunt-contrib-concat
 // Concatenate Js
@@ -34,7 +53,7 @@ Starter for Grunt
 
 
 ###  Image Optimisation
-* not yet
+* Image min
 
 
 -------
