@@ -1,5 +1,5 @@
 // Interval for target generation loop
-var intervalApparitionTarget = 3000; // 3000
+var intervalApparitionTarget = 1000; // 3000
 
 // Collision calcution interval
 var calculationInterval = 100;
@@ -477,7 +477,7 @@ function game(intervalApparitionTarget){
                                         // Music on touch index
                                         var soundEffectIndex = [];
 
-                                        // Sounds for peaches
+                                        // Sounds for peaches 
                                         if(myTargets[a].id.indexOf("peach") != -1){
                                             soundEffectIndex = [new Audio('son/aaah.mp3'),new Audio('son/bonjour-madame.mp3'),new Audio('son/han.mp3'),new Audio('son/oaah.mp3'),new Audio('son/ohohohoh.mp3'),new Audio('son/pop.mp3')];
                                             currentScore += 200;
@@ -495,6 +495,7 @@ function game(intervalApparitionTarget){
 
                                         // Pick a sound and play
                                         var randomize = Math.floor(soundEffectIndex.length * Math.random());
+                                        
                                         soundEffectIndex[randomize].play();
 
                                         // Make a heart
